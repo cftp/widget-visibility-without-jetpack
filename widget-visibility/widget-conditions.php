@@ -40,6 +40,21 @@ class Jetpack_Widget_Conditions {
 		}
 
 		switch ( $major ) {
+			case 'postformat':
+				?>
+				<option value=""><?php _e( 'All post formats', 'jetpack' ); ?></option>
+				<?php
+				if ( current_theme_supports( 'post-formats' ) ) {
+					$post_formats = get_theme_support( 'post-formats' )[0]; ?>
+					<?php
+					foreach( $post_formats as $post_format ) {
+						?>
+						<option value="<?php echo esc_attr( $post_format ); ?>" <?php selected( $post_format, $minor ); ?>><?php echo esc_html( ucwords( $post_format ) ); ?></option>
+						<?php
+					}
+				}
+
+				break;
 			case 'category':
 				?>
 				<option value=""><?php _e( 'All category pages', 'jetpack' ); ?></option>
@@ -254,6 +269,7 @@ class Jetpack_Widget_Conditions {
 							<div class="selection alignleft">
 								<select class="conditions-rule-major" name="conditions[rules_major][]">
 									<option value="" <?php selected( "", $rule['major'] ); ?>><?php echo esc_html_x( '-- Select --', 'Used as the default option in a dropdown list', 'jetpack' ); ?></option>
+									<option value="postformat" <?php selected( "postformat", $rule['major'] ); ?>><?php esc_html_e( 'Post Format', 'jetpack' ); ?></option>
 									<option value="category" <?php selected( "category", $rule['major'] ); ?>><?php esc_html_e( 'Category', 'jetpack' ); ?></option>
 									<option value="author" <?php selected( "author", $rule['major'] ); ?>><?php echo esc_html_x( 'Author', 'Noun, as in: "The author of this post is..."', 'jetpack' ); ?></option>
 
@@ -529,6 +545,12 @@ class Jetpack_Widget_Conditions {
 									$condition_result = true;
 								}
 							}
+						}
+					break;
+					case 'postformat':
+						$condition_result = has_post_format( $rule['minor'] );
+						if ( ! $rule['minor'] ) {
+							$condition_result = true;
 						}
 					break;
 					case 'category':
