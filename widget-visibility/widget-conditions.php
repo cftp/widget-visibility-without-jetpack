@@ -173,7 +173,7 @@ class Jetpack_Widget_Conditions {
 						<option value="<?php echo esc_attr( $taxonomy->name ); ?>" <?php selected( $taxonomy->name, $minor ); ?>><?php echo 'All ' . esc_html( $taxonomy->name ) . ' pages'; ?></option>
 					<?php
 
-					$terms = get_terms( array( $taxonomy->name ), array( 'number' => 250, 'hide_empty' => false ) );
+					$terms = get_terms( array( $taxonomy->name ), array( 'number' => 5000, 'hide_empty' => false ) );
 					foreach ( $terms as $term ) {
 						?>
 						<option value="<?php echo esc_attr( $taxonomy->name . '_tax_' . $term->term_id ); ?>" <?php selected( $taxonomy->name . '_tax_' . $term->term_id, $minor ); ?>><?php echo esc_html( $term->name ); ?></option>
