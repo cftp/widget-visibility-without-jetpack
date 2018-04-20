@@ -1,7 +1,7 @@
 {
-	"name"       : "cftp/widget-visibility-without-jetpack",
+	"name"       : "timeincoss/widget-visibility-without-jetpack",
 	"description": "This plugin controls what pages your widgets appear on.",
-	"homepage"   : "https://github.com/cftp/widget-visibility-without-jetpack/",
+	"homepage"   : "https://github.com/TimeIncOSS/widget-visibility-without-jetpack/",
 	"type"       : "wordpress-plugin",
 	"license"    : "GPL-2.0+",
 	"authors"    : [
